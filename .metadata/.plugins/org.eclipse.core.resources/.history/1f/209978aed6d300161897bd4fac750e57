@@ -1,0 +1,61 @@
+package com.taotao.order.service.impl;
+
+import java.util.List;
+
+import org.omg.CORBA.PRIVATE_MEMBER;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.utils.TaotaoResult;
+import com.taotao.mapper.TbOrderItemMapper;
+import com.taotao.mapper.TbOrderMapper;
+import com.taotao.mapper.TbOrderShippingMapper;
+import com.taotao.order.dao.JedisClient;
+import com.taotao.order.service.OrderService;
+import com.taotao.pojo.TbOrder;
+import com.taotao.pojo.TbOrderItem;
+import com.taotao.pojo.TbOrderShipping;
+/**
+ * 订单管理
+ * <p>永远相信自己一定会成为想象中的人<p>
+ * @author 刘强
+ * @date   2017年1月6日  下午1:57:18
+ * @file_name   OrderServiceImpl.java
+ * @project_name   taotao-order
+ */
+@Service
+public class OrderServiceImpl implements OrderService {
+	
+	@Autowired
+	private TbOrderMapper orderMapper;
+	
+	@Autowired
+	private TbOrderItemMapper orderItemMapper;
+	
+	@Autowired
+	private TbOrderShippingMapper orderShippingMapper;
+	
+	@Autowired
+	private JedisClient jedisClient;
+	
+	@Value("${ORDER_GEN_KEY}")
+	private String ORDER_GEN_KEY;
+	
+	@Value("${ORDER_INIT_ID}")
+	private String ORDER_INIT_ID;
+	
+	@Override
+	public TaotaoResult createOrder(TbOrder order, List<TbOrderItem> itemList,
+			TbOrderShipping orderShipping) {
+		// 向订单表中插入记录
+		//获得订单号
+		jedisClient.get();
+		jedisClient.incr();
+		//补全pojo的属性
+		//插入订单明细
+		//插入订单表
+		return null;
+	}
+
+}

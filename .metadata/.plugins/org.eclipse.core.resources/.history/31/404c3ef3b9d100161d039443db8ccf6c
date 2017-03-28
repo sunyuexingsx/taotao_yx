@@ -1,0 +1,38 @@
+package com.taotao.portal.service.impl;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.utils.HttpClientUtil;
+import com.taotao.common.utils.TaotaoResult;
+import com.taotao.pojo.TbItem;
+import com.taotao.portal.service.ItemService;
+
+@Service
+public class ItemServiceImpl implements ItemService {
+	
+	@Value("${ITEM_INFO_URL}")
+	private String ITEM_INFO_URL;
+	
+	@Value("${SEARCH_BASE_URL}")
+	private String SEARCH_BASE_URL;
+	
+	@Override
+	public TbItem getItemById(long itemId) {
+		try {
+			//调用rest的服务查询商品基本信息
+			String json = HttpClientUtil.doGet(SEARCH_BASE_URL + ITEM_INFO_URL + itemId);
+			if(!StringUtils.isBlank(json)){
+				TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, TbItem.class);
+				if(taotaoResult.getStatus() == 200){
+					
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+}

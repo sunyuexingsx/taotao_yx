@@ -1,0 +1,33 @@
+package com.taiotao.rest.solrj;
+
+import java.io.IOException;
+
+import org.apache.solr.client.solrj.SolrRequest;
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.common.util.NamedList;
+
+public class SolrJTest {
+	
+	public void addDocument() throws Exception{
+		//创建solr连接
+		SolrServer server = new SolrServer() {
+			
+			@Override
+			public void shutdown() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public NamedList<Object> request(SolrRequest request)
+					throws SolrServerException, IOException {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};
+		//创建文档对象
+		//把文档对象写入索引库
+		//关闭连接
+	}
+}

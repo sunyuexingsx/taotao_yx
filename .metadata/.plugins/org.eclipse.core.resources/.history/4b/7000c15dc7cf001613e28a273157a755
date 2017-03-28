@@ -1,0 +1,9 @@
+package com.taotao.controller;
+
+public class FTPTest {
+
+	
+	public void testFtpClient() throws Exception{
+		
+	}
+}

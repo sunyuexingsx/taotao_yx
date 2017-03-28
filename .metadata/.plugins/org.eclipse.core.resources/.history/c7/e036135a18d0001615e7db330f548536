@@ -1,0 +1,8 @@
+package com.taiotao.rest.solrj;
+
+public class SolrJTest {
+	
+	public void addDocument() throws Exception{
+		
+	}
+}

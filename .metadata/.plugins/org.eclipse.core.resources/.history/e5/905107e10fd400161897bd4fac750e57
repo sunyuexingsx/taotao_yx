@@ -1,0 +1,16 @@
+package com.taotao.portal.controller;
+
+import org.springframework.stereotype.Controller;
+
+/**
+ * 
+ * <p>永远相信自己一定会成为想象中的人<p>
+ * @author 刘强
+ * @date   2017年1月6日  下午8:58:10
+ * @file_name   OrderController.java
+ * @project_name   taotao-portal
+ */
+@Controller
+public class OrderController {
+	
+}

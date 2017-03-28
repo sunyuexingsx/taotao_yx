@@ -1,0 +1,14 @@
+package com.taotao.service;
+
+import com.taotao.common.pojo.EUDataGridResult;
+import com.taotao.pojo.TbItemParam;
+import com.taotao.utils.TaotaoResult;
+
+public interface ItemParamService {
+	
+	TaotaoResult getItemParamCid(long cid);
+	
+	EUDataGridResult getItemParamList(int page,int rows);
+	
+	TaotaoResult insertItemParam(TbItemParam itemParam);
+}

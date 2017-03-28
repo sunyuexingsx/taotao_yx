@@ -1,0 +1,93 @@
+package com.taotao.service.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.pojo.EUTreeNode;
+import com.taotao.common.utils.TaotaoResult;
+import com.taotao.mapper.TbContentCategoryMapper;
+import com.taotao.pojo.TbContentCategory;
+import com.taotao.pojo.TbContentCategoryExample;
+import com.taotao.pojo.TbContentCategoryExample.Criteria;
+import com.taotao.service.ContentCategoryService;
+
+@Service
+public class ContentCategoryServiceImpl implements ContentCategoryService {
+
+	@Autowired
+	private TbContentCategoryMapper categoryMapper;
+
+	@Override
+	public List<EUTreeNode> getCategoryList(long parentId) {
+		TbContentCategoryExample example = new TbContentCategoryExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andParentIdEqualTo(parentId);
+		List<TbContentCategory> list = categoryMapper.selectByExample(example);
+		List<EUTreeNode> resultList = new ArrayList<EUTreeNode>();
+		for (TbContentCategory tbContentCategory : list) {
+			// 创建一个节点
+			EUTreeNode node = new EUTreeNode();
+			node.setId(tbContentCategory.getId());
+			node.setText(tbContentCategory.getName());
+			node.setState(tbContentCategory.getIsParent()?"closed":"open");
+			resultList.add(node);
+		}
+		return resultList;
+	}
+
+	@Override
+	public TaotaoResult insertContentCategory(long parentId, String name) {
+		TbContentCategory category = new TbContentCategory();
+		category.setName(name);
+		category.setIsParent(false);
+		category.setStatus(1);//'状态。可选值:1(正常),2(删除)',
+		category.setParentId(parentId);
+		category.setSortOrder(1);//排列序号，表示同级类目的展现次序，如数值相等则按名称次序排列。取值范围:大于零的整数'
+		category.setCreated(new Date());
+		category.setUpdated(new Date());
+		//添加记录
+		categoryMapper.insert(category);
+		//查看父节点的IsParent
+		TbContentCategory parentCat = categoryMapper.selectByPrimaryKey(parentId);
+		if(!parentCat.getIsParent()){
+			parentCat.setIsParent(true);
+			//更新父节点
+			categoryMapper.updateByPrimaryKey(parentCat);
+		}
+		//返回节点
+		return TaotaoResult.ok(category);
+	}
+
+	@Override
+	public TaotaoResult deleteContentCategory(Long parentId, long id) {
+		TbContentCategory parentCat = categoryMapper.selectByPrimaryKey(id);
+		long pId = parentCat.getParentId();
+		if(!parentCat.getIsParent()){
+			parentCat.setIsParent(false);
+			categoryMapper.updateByPrimaryKey(parentCat);
+			categoryMapper.deleteByPrimaryKey(id);
+		}
+		return TaotaoResult.ok();
+	}
+
+	@Override
+	public TaotaoResult updateContentCategory(long id, String name) {
+		TbContentCategory category = new TbContentCategory();
+		TbContentCategory key = categoryMapper.selectByPrimaryKey(id);
+		category.setId(id);
+		category.setName(name);
+		category.setIsParent(key.getIsParent());
+		category.setParentId(key.getParentId());
+		category.setSortOrder(key.getSortOrder());
+		category.setStatus(key.getStatus());
+		category.setCreated(new Date());
+		category.setUpdated(new Date());
+		categoryMapper.updateByPrimaryKey(category);
+		return TaotaoResult.ok();
+	}
+
+}

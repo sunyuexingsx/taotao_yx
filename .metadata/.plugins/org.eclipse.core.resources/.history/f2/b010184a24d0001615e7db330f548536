@@ -1,0 +1,6 @@
+package com.taotao.search.mapper;
+
+public interface ItemMapper {
+	
+	
+}

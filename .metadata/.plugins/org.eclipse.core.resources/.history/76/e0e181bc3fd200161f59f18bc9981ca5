@@ -1,0 +1,69 @@
+package com.taotao.portal.service.impl;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.taotao.common.utils.HttpClientUtil;
+import com.taotao.common.utils.TaotaoResult;
+import com.taotao.pojo.TbItem;
+import com.taotao.pojo.TbItemDesc;
+import com.taotao.portal.pojo.Item;
+import com.taotao.portal.pojo.ItemInfo;
+import com.taotao.portal.service.ItemService;
+
+@Service
+public class ItemServiceImpl implements ItemService {
+	
+	@Value("${ITEM_INFO_URL}")
+	private String ITEM_INFO_URL;
+	
+	@Value("${SEARCH_BASE_URL}")
+	private String SEARCH_BASE_URL;
+	
+	@Value("${ITEM_DESC_URL}")
+	private String ITEM_DESC_URL;
+	
+	@Override
+	public ItemInfo getItemById(long itemId) {
+		try {
+			//调用rest的服务查询商品基本信息
+			String json = HttpClientUtil.doGet(SEARCH_BASE_URL + ITEM_INFO_URL + itemId);
+			if(!StringUtils.isBlank(json)){
+				TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, ItemInfo.class);
+				if(taotaoResult.getStatus() == 200){
+					ItemInfo item = (ItemInfo) taotaoResult.getData();
+					return item;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/**
+	 * 
+	  * <p>Title: getItemDescById</p>
+	  * <p>Description: </p>
+	  * @param itemId
+	  * @return
+	  * @see com.taotao.sso.service.UserService#userLogin(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public String getItemDescById(long itemId) {
+		try {
+			String json = HttpClientUtil.doGet(SEARCH_BASE_URL + ITEM_DESC_URL + itemId);
+			//转换城java对象
+			TaotaoResult taotaoResult = TaotaoResult.formatToPojo(json, TbItemDesc.class);
+			if(taotaoResult.getStatus() == 200){
+				TbItemDesc itemDesc = (TbItemDesc) taotaoResult.getData();
+				//取商品描述信息
+				String result = itemDesc.getItemDesc();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+}

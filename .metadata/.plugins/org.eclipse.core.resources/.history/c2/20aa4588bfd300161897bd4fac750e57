@@ -1,0 +1,8 @@
+package snippet;
+
+public class Snippet {
+	public static void main(String[] args) {
+		我想知道你每次能从我这里取走多少能力
+	}
+}
+

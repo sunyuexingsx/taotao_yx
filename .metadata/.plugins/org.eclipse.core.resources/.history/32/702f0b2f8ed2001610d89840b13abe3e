@@ -1,0 +1,15 @@
+package com.taotao.portal.pojo;
+
+public class CartItem {
+
+	private String id;
+
+	private String title;
+
+	private String sell_point;
+
+	private long price;
+
+	private String image;
+
+}

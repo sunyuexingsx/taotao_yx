@@ -1,0 +1,14 @@
+package com.taotao.search.service.impl;
+
+import com.taotao.search.service.ItemService;
+import com.taotao.utils.TaotaoResult;
+
+public class ItemServiceImpl implements ItemService{
+
+	@Override
+	public TaotaoResult importAllItems() {
+		
+		return null;
+	}
+	
+}

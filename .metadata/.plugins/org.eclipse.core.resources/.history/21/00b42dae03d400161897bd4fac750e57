@@ -1,0 +1,59 @@
+package com.taotao.portal.interceptor;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.taotao.common.utils.CookieUtils;
+import com.taotao.pojo.TbUser;
+import com.taotao.portal.service.UserService;
+import com.taotao.portal.service.impl.UserServiceImpl;
+
+public class LoginInterceptor implements HandlerInterceptor {
+
+	@Autowired
+	private UserServiceImpl userServiceImpl;
+
+	@Override
+	public boolean preHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler) throws Exception {
+		// 在Handler执行之前处理
+		// 判断用户是否登录
+		// 从cookie中取到token
+		String token = CookieUtils.getCookieValue(request, "TT_TPKEN");
+		// 根据token换取用户信息
+		TbUser user = userServiceImpl.getUserByToken(token);
+		// 取不到用户
+		if (user == null) {
+			// 跳转到登录页面，把用户请求的url作为参数传到登录页面
+			response.sendRedirect(userServiceImpl.SSO_BASE_URL
+					+ userServiceImpl.SSO_PAGE_URL + "?redirect="
+					+ request.getRequestURI());
+			// 返回false
+			return false;
+		}
+		// 取到用户信息，顺利通过
+		// 返回值决定Handler是否执行 true：执行 false：不执行
+		return true;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request,
+			HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		// 在Handler执行之前处理,返回ModelAndView之前处理
+
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request,
+			HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+		// 在ModelAndView之后处理
+
+	}
+
+}

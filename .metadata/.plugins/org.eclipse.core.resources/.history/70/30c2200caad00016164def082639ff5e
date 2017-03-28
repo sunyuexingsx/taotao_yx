@@ -1,0 +1,16 @@
+package com.taotao.search.dao.impl;
+
+import org.apache.solr.client.solrj.SolrQuery;
+
+import com.taotao.search.dao.SearchDao;
+import com.taotao.search.pojo.SearchResult;
+
+public class SearshDaoImpl implements SearchDao {
+
+	@Override
+	public SearchResult search(SolrQuery query) throws Exception {
+		
+		return null;
+	}
+
+}

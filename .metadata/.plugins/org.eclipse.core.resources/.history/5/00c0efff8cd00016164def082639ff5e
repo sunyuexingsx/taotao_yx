@@ -1,0 +1,7 @@
+package com.taotao.search.service.impl;
+
+import com.taotao.search.service.ItemService;
+
+public class ItemServiceImpl implements ItemService{
+	
+}

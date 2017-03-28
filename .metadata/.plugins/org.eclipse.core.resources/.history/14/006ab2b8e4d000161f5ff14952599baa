@@ -1,0 +1,32 @@
+package com.taotao.portal.service.impl;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.taotao.portal.pojo.SearchResult;
+import com.taotao.portal.service.SearchService;
+import com.taotao.utils.HttpClientUtil;
+/**
+ * 商品搜索
+ * <p>永远相信自己一定会成为想象中的人<p>
+ * @author 刘强
+ * @date   2017年1月2日  下午8:05:47
+ * @file_name   SearchServiceImpl.java
+ * @project_name   taotao-portal
+ */
+@Service
+public class SearchServiceImpl implements SearchService {
+
+	@Value("${SEARCH_BASE_URL}")
+	private String SEARCH_BASE_URL;
+
+	@Override
+	public SearchResult search(String queryString, int page) {
+		//调用taota-search的服务
+		//查询参数
+		
+		HttpClientUtil.doGet(SEARCH_BASE_URL);
+		return null;
+	}
+
+}

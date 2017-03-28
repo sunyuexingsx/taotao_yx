@@ -1,0 +1,8 @@
+package com.taotao.search.pojo;
+
+import java.util.List;
+
+public class SearchResult {
+		
+	private List<Item> itemList;
+}

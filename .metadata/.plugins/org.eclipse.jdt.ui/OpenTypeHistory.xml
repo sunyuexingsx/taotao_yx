@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=taotao-rest/src\/main\/java&lt;com.taotao.rest.dao{JedisClient.java[JedisClient" modifiers="513" timestamp="1483063754635"/>
+<typeInfo handle="=taotao-rest/C:\/Users\/Administrator\/.m2\/repository\/redis\/clients\/jedis\/2.7.2\/jedis-2.7.2.jar&lt;redis.clients.jedis(RedisPipeline.class[RedisPipeline" modifiers="1537" timestamp="1437286372266"/>
+<typeInfo handle="=taotao-rest/src\/main\/java&lt;com.taotao.rest.service{RedisService.java[RedisService" modifiers="513" timestamp="1483410819935"/>
+<typeInfo handle="=taotao-search/src\/main\/java&lt;com.taotao.search.dao{SearchDao.java[SearchDao" modifiers="513" timestamp="1483367789278"/>
+<typeInfo handle="=taotao-search/src\/main\/java&lt;com.taotao.search.service{SearchService.java[SearchService" modifiers="513" timestamp="1483367625232"/>
+<typeInfo handle="=taotao-portal/src\/main\/java&lt;com.taotao.portal.service{SearchService.java[SearchService" modifiers="513" timestamp="1483358716564"/>
+<typeInfo handle="=taotao-portal/src\/main\/java&lt;com.taotao.portal.service{ItemService.java[ItemService" modifiers="513" timestamp="1483513385546"/>
+<typeInfo handle="=taotao-portal/E:\/Program Files\/Java\/jdk1.7.0_17\/jre\/lib\/rt.jar&lt;java.awt.event(ItemListener.class[ItemListener" modifiers="1537" timestamp="1481024975066"/>
+<typeInfo handle="=taotao-manager-pojo/src\/main\/java&lt;com.taotao.pojo{TbItem.java[TbItem" modifiers="1" timestamp="1481853764924"/>
+<typeInfo handle="=taotao-portal/src\/main\/java&lt;com.taotao.portal.service{CartService.java[CartService" modifiers="513" timestamp="1483669668446"/>
+<typeInfo handle="=taotao-order/src\/main\/java&lt;com.taotao.order.service{OrderService.java[OrderService" modifiers="513" timestamp="1483682196025"/>
+<typeInfo handle="=taotao-manager-pojo/src\/main\/java&lt;com.taotao.pojo{TbOrder.java[TbOrder" modifiers="1" timestamp="1481853764972"/>
+<typeInfo handle="=taotao-portal/src\/main\/java&lt;com.taotao.portal.service{OrderService.java[OrderService" modifiers="513" timestamp="1483760366204"/>
+</typeInfoHistroy>

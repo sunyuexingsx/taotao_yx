@@ -1,0 +1,19 @@
+package com.taotao.controller;
+
+import org.apache.commons.net.ftp.FTPClient;
+import org.junit.Test;
+
+public class FTPTest {
+
+	
+	@Test
+	public void testFtpClient() throws Exception{
+		//创建一个ftpClient对象
+		FTPClient ftpClient = new FTPClient();
+		//创建ftp连接
+		ftpClient.connect("101.200.237.120", 21);
+		//登录ftp服务器
+		ftpClient.login("ftpuser", "ftpuser");
+		//上传文件件
+	}
+}

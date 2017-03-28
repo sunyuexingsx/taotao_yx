@@ -1,0 +1,11 @@
+INDEX VERSION 1.122+D:\workspace\taotao\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+516265970.index
+3609442454.index
+3109012304.index
+2141462497.index
+4056203611.index
+264008643.index
+1316427803.index
+3237631926.index
+4084376609.index
+2832769381.index
